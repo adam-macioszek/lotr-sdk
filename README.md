@@ -41,5 +41,5 @@ log.Println(testQuote.Dialog)
 ```
 
 ## Testing
-- No real unit/end-to-end/integration testing was done, I merely validated the common use cases.
+- No real unit/end-to-end/integration testing was done, I merely validated the common use cases as you can see in cmd/main.go.
 
