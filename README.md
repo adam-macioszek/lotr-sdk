@@ -41,5 +41,9 @@ log.Println(testQuote.Dialog)
 ```
 
 ## Testing
-- No real unit/end-to-end/integration testing was done, I merely validated the common use cases as you can see in cmd/main.go.
+- There is some basic testing done in the tests folder. This is very basic and simply meant to validate the general functionality of the sdk. I could definitly be add some table test to have better coverage over the functions.One particular are of improvement is the various parts of request process, i.e getting various status codes.
+To run the tests navigate the to the /tests/folder and run 
+```
+go test -v
+```
 
