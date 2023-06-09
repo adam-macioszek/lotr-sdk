@@ -16,7 +16,9 @@ with the data.
 
 ## Future Improvements
 - Better error handling, create custom errors for common situations, potentially look into retrying
-when error occurs as opposed to returning early.
+when error occurs as opposed to returning early. When getting the HTTP response I only check the status code
+for unauthorized and I only check if the rate limit has been reached. Future work could be done to exand the status
+codes that return errors.
 
 - Extend Usability, currently I am just returning the data from the endpoints, making this a pretty light wrapper.
 If given more time I would potentially look into common use cases, making it easier to interact with the data or providing
@@ -25,7 +27,7 @@ common functions that users are likly to use.
 - Add Support for Pagination, Sorting and Filtering. The benifits of adding these primarily seem like they would help
 any use cases that interact with character information, i.e. filtering all quotes from a certain character. As this sdk
 does not support character data yet I have chosen to not include this. Pagination might be useful when working with quotes,
-but I made the descition to delay adding it.
+but I made the decision to delay adding it.
 
 - I made the decision to expose the underlying data structure for Movies and Quotes, which in this case I believe to be valid as
 it is data returned from the API.
