@@ -1,17 +1,17 @@
 ## Design
 The design of the sdk is to loosely wrap the data coming The One API. A user has access to the following core funcitons
+```
 movie.GetMovies() -> return list of Movie Objects
 movie.GetMovieByID(movieID) -> returns Movie Object matching ID
 quote.getQuotes() -> returns all Quote Objects
 quote.GetQuoteByID(quoteID) -> reurn Quote Object matching ID 
 quote.GetQuotesFromMovie(movieID) ->  returns all Quote objects from a movie
-
+```
 Each of these functions uses the Request package to call the appropriate endpoint and return a slice
 of bytes which the function can then unpack into a Quote or Movie object, matching the structure of the 
 json data returned. This is then returned to the user for them to manipulate as they need. There are other
 functions I exposed for these two objects but they are not necessary and were merely for testing/playing
 with the data.
-
 
 
 ## Future Improvements
