@@ -1,5 +1,5 @@
 # Lord of the Rings SDK
-This is a Go SDK for The One API, a Lord of the Rings API. It provides an lightweight Go wrapper around the /movie and /quote end points.
+This is a Go SDK for The One API, a Lord of the Rings API. It provides an lightweight Go wrapper around the /movie , /quote and /character end points.
 The One API can be found here: https://the-one-api.dev/.
 ## Installation
 
