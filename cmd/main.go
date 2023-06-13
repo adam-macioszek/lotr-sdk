@@ -3,13 +3,16 @@ package main
 import (
 	"log"
 
-	"github.com/adam-macioszek/lotr-sdk/pkg/movie"
-	"github.com/adam-macioszek/lotr-sdk/pkg/quote"
+	"github.com/adam-macioszek/lotr-sdk/character"
+	"github.com/adam-macioszek/lotr-sdk/movie"
+	"github.com/adam-macioszek/lotr-sdk/quote"
+	"github.com/adam-macioszek/lotr-sdk/request"
 )
 
 const API_ENDPOINT string = "https://the-one-api.dev/v2"
 
 func main() {
+	testQuotes()
 }
 
 func testMovies() {
@@ -35,15 +38,24 @@ func testMovies() {
 
 func testQuotes() {
 	//Getting all quotes
-	quotes, err := quote.GetQuotes()
+	quotes, err := quote.GetQuotes(
+		request.WithSort("character", "asc"),
+		request.WithLimit(10),
+		request.WithPage(3),
+	)
 	if err != nil {
 		log.Println(err)
 	}
 	for _, quote := range quotes {
-		log.Println(quote.ID, quote.Dialog)
+		char, err := character.GetCharacterByID(quote.CharacterID)
+		if err != nil {
+			log.Println("ooof")
+		}
+		log.Println(char.Name, quote.Dialog)
 	}
 
-	//Getting quotes from one movie, i.e TwinTowers
+}
+func quoteHolder() {
 	movieId := "5cd95395de30eff6ebccde5b"
 	testQuotes, err := quote.GetQuotesFromMovie(movieId)
 	if err != nil {
@@ -61,5 +73,4 @@ func testQuotes() {
 	}
 	log.Println(testQuote.Dialog, testQuote.ID)
 	//quoteDialog := "Hey, stinker, don't go gettingtoo far ahead."
-
 }

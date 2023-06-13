@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/adam-macioszek/lotr-sdk/pkg/request"
+	"github.com/adam-macioszek/lotr-sdk/request"
 )
 
 type QuoteResponse struct {
@@ -25,7 +25,7 @@ type Quote struct {
 	CharacterID string `json:"character"`
 }
 
-func GetQuotes() ([]Quote, error) {
+func GetAllQuotes() ([]Quote, error) {
 	response, err := request.CallApi("/quote")
 	if err != nil {
 		log.Printf("error calling API %v\n", err)
@@ -36,6 +36,20 @@ func GetQuotes() ([]Quote, error) {
 		return []Quote{}, err
 	}
 
+	return quotes, nil
+}
+
+func GetQuotes(opts ...request.Option) ([]Quote, error) {
+
+	response, err := request.CallApi("/quote", opts...)
+	if err != nil {
+		log.Printf("error calling API %v\n", err)
+		return []Quote{}, err
+	}
+	quotes, err := deserializeQuotes(response)
+	if err != nil {
+		return []Quote{}, err
+	}
 	return quotes, nil
 }
 

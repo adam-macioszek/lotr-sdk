@@ -1,9 +1,9 @@
-package tests
+package movie
 
 import (
 	"testing"
 
-	"github.com/adam-macioszek/lotr-sdk/pkg/movie"
+	"github.com/adam-macioszek/lotr-sdk/movie"
 )
 
 func TestGetMovieById(t *testing.T) {

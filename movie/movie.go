@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/adam-macioszek/lotr-sdk/pkg/request"
+	"github.com/adam-macioszek/lotr-sdk/request"
 )
 
 type movieResponse struct {

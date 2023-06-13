@@ -6,11 +6,48 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 const API_ENDPOINT string = "https://the-one-api.dev/v2"
 
-func CallApi(uri string) ([]byte, error) {
+type Sorting struct {
+	Field string
+	Order string
+}
+
+type Filtering struct {
+}
+
+type Option func(*string)
+
+func WithSort(field, order string) Option {
+	return func(str *string) {
+		*str += "sort=" + field + ":" + order
+	}
+}
+
+func WithPage(page int) Option {
+	return func(str *string) {
+		*str += "page=" + strconv.Itoa(page)
+	}
+}
+func WithLimit(limit int) Option {
+	return func(str *string) {
+		*str += "limit=" + strconv.Itoa(limit)
+	}
+}
+func WithOffset(offset int) Option {
+	return func(str *string) {
+		*str += "offset=" + strconv.Itoa(offset)
+	}
+}
+
+func CallApi(uri string, opts ...Option) ([]byte, error) {
+	if len(opts) > 1 {
+		updateUri(&uri, opts...)
+	}
+
 	req, err := buildRequest(uri)
 	if err != nil {
 		log.Printf("error building HTTP request: %v\n", err)
@@ -67,4 +104,15 @@ func makeRequest(request *http.Request) ([]byte, error) {
 	}
 
 	return responseBytes, nil
+}
+
+func updateUri(uri *string, opts ...Option) {
+	*uri += "?"
+	for i, opt := range opts {
+		opt(uri)
+		if i != len(opts)-1 {
+			*uri = *uri + "&"
+		}
+	}
+
 }

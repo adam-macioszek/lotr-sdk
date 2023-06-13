@@ -1,9 +1,9 @@
-package tests
+package quote
 
 import (
 	"testing"
 
-	"github.com/adam-macioszek/lotr-sdk/pkg/quote"
+	"github.com/adam-macioszek/lotr-sdk/quote"
 )
 
 func TestGetQuoteById(t *testing.T) {
