@@ -24,10 +24,7 @@ codes that return errors.
 If given more time I would potentially look into common use cases, making it easier to interact with the data or providing
 common functions that users are likly to use.
 
-- Add Support for Pagination, Sorting and Filtering. The benifits of adding these primarily seem like they would help
-any use cases that interact with character information, i.e. filtering all quotes from a certain character. As this sdk
-does not support character data yet I have chosen to not include this. Pagination might be useful when working with quotes,
-but I made the decision to delay adding it.
+- Add Support for Filtering.
 
 - I made the decision to expose the underlying data structure for Movies and Quotes, which in this case I believe to be valid as
 it is data returned from the API.
